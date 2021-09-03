@@ -7,13 +7,17 @@ import (
 )
 
 func main() {
-	//l2 := []int{2, 3, 3, 5, 7, 9, 12, 15, 18, 19}
-	//l1 := []int{1, 6, 7, 8, 10}
-	//l3 := mergeTwoLists(l1, l2)
-	//fmt.Println(l3)
+
 }
 
+//输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。
+//例如，一个链表有 6 个节点，从头节点开始，它们的值依次是 1、2、3、4、5、6。这个链表的倒数第 3 个节点是值为 4 的节点。
+
 // 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+//l2 := []int{2, 3, 3, 5, 7, 9, 12, 15, 18, 19}
+//l1 := []int{1, 6, 7, 8, 10}
+//l3 := mergeTwoLists(l1, l2)
+//fmt.Println(l3)
 func mergeTwoLists(l1, l2 []int) []int {
 	l3 := make([]int, 0)
 	for len(l1) > 0 || len(l2) > 0 {
@@ -46,7 +50,6 @@ func mergeTwoLists(l1, l2 []int) []int {
 //左括号必须以正确的顺序闭合。
 func isValid(s string) bool {
 	if n := len(s); n%2 == 0 {
-		// maps := map[string]int{"(": 1, ")": -1, "{": 2, "}": -2, "[": 3, "]": -3}
 		for strings.Contains(s, "()") || strings.Contains(s, "[]") || strings.Contains(s, "{}") {
 			s = strings.ReplaceAll(s, "()", "")
 			s = strings.ReplaceAll(s, "[]", "")
@@ -77,4 +80,39 @@ func isPalindrome(x int) bool {
 		palindromeNum += y[i : i+1]
 	}
 	return palindromeNum == y
+}
+
+//给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
+//如果反转后整数超过 32 位的有符号整数的范围 [−2 的 31 次方,  （2 的 31 次方） − 1] ，就返回 0。
+//假设环境不允许存储 64 位整数（有符号或无符号）。
+//fmt.Println(reverse(-36469))
+func reverse(x int) (rev int) {
+	for x != 0 {
+		if rev < math.MinInt32/10 || rev > math.MaxInt32/10 {
+			return 0
+		}
+		digit := x % 10
+		x /= 10
+		rev = rev*10 + digit
+	}
+	return
+}
+
+// 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。
+// 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+// 你可以按任意顺序返回答案。
+// x, y := doSum([]int{1, 5, 7, 4, 6, 12, 8}, 55)
+// fmt.Println(x, y)
+func doSum(nums []int, sum int) (indexX, indexY int) {
+	numsLen := len(nums)
+	for i := 0; i < numsLen; i++ {
+		for k := i + 1; k < numsLen; k++ {
+			if nums[i]+nums[k] == sum {
+				indexX = i
+				indexY = k
+				return
+			}
+		}
+	}
+	return -1, -1
 }
