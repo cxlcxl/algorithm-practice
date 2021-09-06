@@ -10,6 +10,21 @@ func main() {
 
 }
 
+//给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。
+//不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
+//思路：定义一个可以截断的位置，遍历数组时发现重复的跳过，把不重复的数字赋值到截断的位置，再将截断位置 +1
+//fmt.Println(arrayUnique([]int{0, 0, 0, 1, 1, 2, 3, 3}))
+func arrayUnique(array []int) []int {
+	uniqueIdx := 1
+	for i := 1; i < len(array); i++ {
+		if array[i] != array[i-1] {
+			array[uniqueIdx] = array[i]
+			uniqueIdx += 1
+		}
+	}
+	return array[0:uniqueIdx]
+}
+
 //给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
 //fmt.Println(searchInsert([]int{1, 2, 3, 5, 9}, 10))
 func searchInsert(nums []int, target int) int {
@@ -24,6 +39,7 @@ func searchInsert(nums []int, target int) int {
 }
 
 //二分查找：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target，写一个函数搜索 nums 的 target，如果目标值存在返回下标，否则返回 -1
+//思路：左右两个指针，对比后移动指针
 // fmt.Println(search([]int{1, 3, 6, 7, 9, 10, 12, 15, 16, 18, 19, 22, 25, 28, 29}, 6))
 func search(nums []int, target int) int {
 	minIdx := 0
