@@ -10,6 +10,43 @@ func main() {
 
 }
 
+//给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+//fmt.Println(searchInsert([]int{1, 2, 3, 5, 9}, 10))
+func searchInsert(nums []int, target int) int {
+	idx := 0
+	for idx <= len(nums)-1 {
+		if nums[idx] >= target {
+			return idx
+		}
+		idx++
+	}
+	return idx
+}
+
+//二分查找：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target，写一个函数搜索 nums 的 target，如果目标值存在返回下标，否则返回 -1
+// fmt.Println(search([]int{1, 3, 6, 7, 9, 10, 12, 15, 16, 18, 19, 22, 25, 28, 29}, 6))
+func search(nums []int, target int) int {
+	minIdx := 0
+	maxIdx := len(nums) - 1
+	if target > nums[maxIdx] || target < nums[minIdx] {
+		return -1
+	}
+	for minIdx <= maxIdx {
+		middleIdx := (maxIdx-minIdx)/2 + minIdx
+		if nums[middleIdx] == target {
+			return middleIdx
+		}
+		if nums[middleIdx] > target {
+			maxIdx = middleIdx - 1
+		}
+		if nums[middleIdx] < target {
+			minIdx = middleIdx + 1
+		}
+	}
+
+	return -1
+}
+
 //输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。
 //例如，一个链表有 6 个节点，从头节点开始，它们的值依次是 1、2、3、4、5、6。这个链表的倒数第 3 个节点是值为 4 的节点。
 
