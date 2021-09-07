@@ -129,3 +129,33 @@ func DoSum(nums []int, sum int) (indexX, indexY int) {
 	}
 	return -1, -1
 }
+
+// IntInArray ...
+func IntInArray(x []int, target int) bool {
+	for _, v := range x {
+		if v == target {
+			return true
+		}
+	}
+	return false
+}
+
+// StringInArray ...
+func StringInArray(x []string, target string) int {
+	for key, v := range x {
+		if v == target {
+			return key
+		}
+	}
+	return -1
+}
+
+// ByteInArray ...
+func ByteInArray(x []byte, target byte) int {
+	for key, v := range x {
+		if v == target {
+			return key
+		}
+	}
+	return -1
+}
