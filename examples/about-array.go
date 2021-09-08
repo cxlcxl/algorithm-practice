@@ -1,5 +1,19 @@
 package examples
 
+func SortInt(x []int) []int {
+	tmp := 0
+	for i := 0; i < len(x); i++ {
+		for k := 1; k < len(x); k++ {
+			if x[k] < x[k-1] {
+				tmp = x[k]
+				x[k] = x[k-1]
+				x[k-1] = tmp
+			}
+		}
+	}
+	return x
+}
+
 // AddNums ...
 //给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
 //请你将两个数相加，并以相同形式返回一个表示和的链表。
@@ -158,4 +172,48 @@ func ByteInArray(x []byte, target byte) int {
 		}
 	}
 	return -1
+}
+
+// FindMaximizedCapital 假设 力扣（LeetCode）即将开始 IPO 。为了以更高的价格将股票卖给风险投资公司，
+//力扣 希望在 IPO 之前开展一些项目以增加其资本。 由于资源有限，它只能在 IPO 之前完成最多 k 个不同的项目。
+//帮助 力扣 设计完成最多 k 个不同项目后得到最大总资本的方式。
+//给你 n 个项目。对于每个项目 i ，它都有一个纯利润 profits[i] ，和启动该项目需要的最小资本 capital[i] 。
+//最初，你的资本为 w 。当你完成一个项目时，你将获得纯利润，且利润将被添加到你的总资本中。
+//总而言之，从给定项目中选择 最多 k 个不同项目的列表，以 最大化最终资本 ，并输出最终可获得的最多资本。
+//答案保证在 32 位有符号整数范围内。
+//示例 1：
+//输入：k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]
+//输出：4
+//解释：
+//由于你的初始资本为 0，你仅可以从 0 号项目开始。
+//在完成后，你将获得 1 的利润，你的总资本将变为 1。
+//此时你可以选择开始 1 号或 2 号项目。
+//由于你最多可以选择两个项目，所以你需要完成 2 号项目以获得最大的资本。
+//因此，输出最后最大化的资本，为 0 + 1 + 3 = 4。
+//示例 2：
+//输入：k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]
+//输出：6
+func FindMaximizedCapital(k int, w int, profits []int, capital []int) int {
+	// 筛选的次数限制
+	profitsLen := len(profits)
+	usedIdx := make([]int, profitsLen)
+	for i := 0; i < profitsLen; i++ {
+		usedIdx[i] = -1
+	}
+	i := 0
+	for i < k && i < profitsLen {
+		current := 0
+		for j, c := range capital {
+			// 未被使用 && 小于等于初始资本 && 较大的利润
+			if c <= w && profits[j] > current {
+				if idx := IntInArray(usedIdx, j); idx == -1 {
+					usedIdx[i] = j
+					current = profits[j]
+				}
+			}
+		}
+		i++
+		w += current
+	}
+	return w
 }
