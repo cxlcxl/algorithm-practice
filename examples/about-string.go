@@ -44,3 +44,42 @@ func IsValid(s string) bool {
 	}
 	return false
 }
+
+// LongestCommonPrefix 编写一个函数来查找字符串数组中的最长公共前缀。
+//如果不存在公共前缀，返回空字符串 ""。
+//示例 1：
+//输入：strs = ["flower","flow","flight"]
+//输出："fl"
+func LongestCommonPrefix(strs []string) string {
+	prefix := ""
+	minLen := 0
+	// 取出最短子串
+	for i := 0; i < len(strs); i++ {
+		if strLen := len(strs[i]); i == 0 || minLen > strLen {
+			minLen = strLen
+		}
+	}
+	if minLen == 0 {
+		return prefix
+	}
+	// 进行字符串的横向遍历
+	for i := 0; i < minLen; i++ {
+		for k, str := range strs {
+			// 每次遍历到第一个子串重置公共前缀
+			if k == 0 {
+				prefix = str[0 : i+1]
+				continue
+			}
+			// 不等时
+			if str[0:i+1] != prefix {
+				if k == 0 {
+					return prefix
+				} else {
+					return prefix[0 : len(prefix)-1]
+				}
+			}
+		}
+	}
+
+	return prefix
+}

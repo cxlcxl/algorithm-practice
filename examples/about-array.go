@@ -131,13 +131,13 @@ func DoSum(nums []int, sum int) (indexX, indexY int) {
 }
 
 // IntInArray ...
-func IntInArray(x []int, target int) bool {
-	for _, v := range x {
+func IntInArray(x []int, target int) int {
+	for key, v := range x {
 		if v == target {
-			return true
+			return key
 		}
 	}
-	return false
+	return -1
 }
 
 // StringInArray ...
