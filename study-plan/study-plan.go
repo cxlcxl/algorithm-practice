@@ -1,6 +1,9 @@
 package study_plan
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 // ArrayHasRepeat 给定一个整数数组，判断是否存在重复元素。
 //如果存在一值在数组中出现至少两次，函数返回 true 。如果数组中每个元素都不相同，则返回 false 。
@@ -75,4 +78,77 @@ func MergeArrays(numsx []int, x int, numsy []int, y int) []int {
 	numsx = append(numsx[0:x], numsy...)
 	sort.Ints(numsx)
 	return numsx
+}
+
+// ArrayIntersect 给定两个数组，编写一个函数来计算它们的交集。
+//输入：nums1 = [1,2,2,1], nums2 = [2,2]
+//输出：[2,2]
+//输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+//输出：[4,9]
+func ArrayIntersect(nums1 []int, nums2 []int) []int {
+	intersect := make([]int, 0)
+	sort.Ints(nums1)
+	for i := 0; i < len(nums2); i++ {
+		if set := intersectInArray(nums1, nums2[i]); set != -1 {
+			nums1 = append(nums1[0:set], nums1[set+1:]...)
+			intersect = append(intersect, nums2[i])
+		}
+	}
+	return intersect
+}
+func intersectInArray(x []int, target int) int {
+	for key, v := range x {
+		if target < v {
+			break
+		}
+		if v == target {
+			return key
+		}
+	}
+	return -1
+}
+
+// hashmap方式
+func arrayIntersectMap(nums1 []int, nums2 []int) []int {
+	tmp := map[int]int{}
+	intersect := make([]int, 0)
+	for _, num := range nums1 {
+		if _, ok := tmp[num]; ok {
+			tmp[num]++
+		} else {
+			tmp[num] = 1
+		}
+	}
+	for _, num := range nums2 {
+		if v, ok := tmp[num]; ok && v > 0 {
+			intersect = append(intersect, num)
+			tmp[num]--
+		}
+	}
+	return intersect
+}
+
+// MaxProfit 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
+//你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。
+//返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
+//输入：[2,8,1,5,3,6,4]
+//输出：5
+//解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+//     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+//输入：prices = [7,6,4,3,1]
+//输出：0
+//解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+func MaxProfit(prices []int) int {
+	min, max := math.MaxInt32, 0
+	for _, v := range prices {
+		if v < min {
+			// 找出历史最低
+			min = v
+		} else if v-min > max {
+			// 后面的
+			max = v - min
+		}
+	}
+
+	return max
 }

@@ -15,5 +15,5 @@ func main() {
 	//fmt.Println(examples.FindMaximizedCapital(97, 352, profits, capital))
 
 	// 算法数据结构入门 - 两周计划
-	fmt.Println(studyPlan.MergeArrays([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3))
+	fmt.Println(studyPlan.MaxProfit([]int{2, 8, 1, 5, 3, 9, 4}))
 }
