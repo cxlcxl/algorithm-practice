@@ -152,3 +152,65 @@ func MaxProfit(prices []int) int {
 
 	return max
 }
+
+// MatrixReshape 在 MATLAB 中，有一个非常有用的函数 reshape ，它可以将一个 m x n 矩阵重塑为另一个大小不同（r x c）的新矩阵，但保留其原始数据。
+//给你一个由二维数组 mat 表示的 m x n 矩阵，以及两个正整数 r 和 c ，分别表示想要的重构的矩阵的行数和列数。
+//重构后的矩阵需要将原始矩阵的所有元素以相同的 行遍历顺序 填充。
+//如果具有给定参数的 reshape 操作是可行且合理的，则输出新的重塑矩阵；否则，输出原始矩阵。
+//输入：mat = [[1,2],[3,4]], r = 1, c = 4
+//输出：[[1,2,3,4]]
+func MatrixReshape(mat [][]int, r int, c int) [][]int {
+	matTotal := 0
+	tmp := make([]int, 0)
+	for _, nums := range mat {
+		matTotal += len(nums)
+		tmp = append(tmp, nums...)
+	}
+	if r*c != matTotal {
+		return mat
+	}
+	ret := make([][]int, 0)
+	list := 0
+	listInt := make([]int, c)
+	for _, num := range tmp {
+		listInt[list] = num
+		list++
+		if list >= c {
+			ret = append(ret, listInt)
+			listInt = make([]int, c)
+			list = 0
+		}
+	}
+	return ret
+}
+
+// Generate 给定一个非负整数 numRows，生成「杨辉三角」的前 numRows 行。
+//在「杨辉三角」中，每个数是它左上方和右上方的数的和。
+//输入: numRows = 5
+//输出: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+//输入: numRows = 1
+//输出: [[1]]
+func Generate(numRows int) [][]int {
+	rows := make([][]int, numRows)
+	if numRows == 0 {
+		return rows
+	}
+	rows[0] = []int{1}
+	if numRows == 1 {
+		return rows
+	}
+	rows[1] = []int{1, 1}
+	for i := 2; i < numRows; i++ {
+		item := make([]int, i+1)
+		for k := 0; k < i+1; k++ {
+			if k == 0 || k == i {
+				item[k] = 1
+			} else {
+				item[k] = rows[i-1][k] + rows[i-1][k-1]
+			}
+		}
+		rows[i] = item
+	}
+
+	return rows
+}
