@@ -83,3 +83,30 @@ func LongestCommonPrefix(strs []string) string {
 
 	return prefix
 }
+
+// FindLongestWord 给你一个字符串 s 和一个字符串数组 dictionary 作为字典，找出并返回字典中最长的字符串，该字符串可以通过删除 s 中的某些字符得到。
+//如果答案不止一个，返回长度最长且字典序最小的字符串。如果答案不存在，则返回空字符串。
+//输入：s = "abpcplea", dictionary = ["ale","apple","monkey","plea"]
+//输出："apple"
+//输入：s = "abpcplea", dictionary = ["a","b","c"]
+//输出："a"
+func FindLongestWord(s string, dictionary []string) string {
+	sByte := []byte(s)
+	ret := ""
+	for _, str := range dictionary {
+		tmp := make([]byte, 0)
+		tmp = append(tmp, sByte...)
+		strByte := []byte(str)
+		for i, v := range strByte {
+			if byteIdx := ByteInArray(tmp, v); byteIdx != -1 {
+				tmp = append(tmp[0:byteIdx], tmp[byteIdx+1:]...)
+			} else {
+				break
+			}
+			if i == len(strByte)-1 && len(ret) < len(strByte) {
+				ret = str
+			}
+		}
+	}
+	return ret
+}
