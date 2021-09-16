@@ -214,3 +214,55 @@ func Generate(numRows int) [][]int {
 
 	return rows
 }
+
+// FindPeakElement 寻找峰值
+//峰值元素是指其值严格大于左右相邻值的元素。
+//给你一个整数数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可。
+//你可以假设 nums[-1] = nums[n] = -∞ 。
+//你必须实现时间复杂度为 O(log n) 的算法来解决此问题。
+func FindPeakElement(nums []int) int {
+	peak := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			peak = i
+		} else if nums[i] < nums[i-1] {
+			break
+		}
+	}
+	return peak
+}
+
+// CanConstruct 给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。
+//(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)
+func CanConstruct(ransomNote string, magazine string) bool {
+	if len(ransomNote) > len(magazine) {
+		return false
+	}
+	magazineBytes, ransomNoteBytes := []byte(magazine), []byte(ransomNote)
+	magazineMap := make(map[byte]int, 0)
+	for _, magazineByte := range magazineBytes {
+		if _, ok := magazineMap[magazineByte]; ok {
+			magazineMap[magazineByte]++
+		} else {
+			magazineMap[magazineByte] = 1
+		}
+	}
+	for _, noteByte := range ransomNoteBytes {
+		if v, ok := magazineMap[noteByte]; ok && v > 0 {
+			magazineMap[noteByte]--
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+// FirstUniqChar 给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+//s = "leetcode"
+//返回 0
+//s = "loveleetcode"
+//返回 2
+func FirstUniqChar(s string) int {
+	idx := -1
+	return idx
+}
