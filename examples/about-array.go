@@ -217,3 +217,72 @@ func FindMaximizedCapital(k int, w int, profits []int, capital []int) int {
 	}
 	return w
 }
+
+// IsValidSudoku 请你判断一个 9x9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
+//数字 1-9 在每一行只能出现一次。
+//数字 1-9 在每一列只能出现一次。
+//数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
+//数独部分空格内已填入了数字，空白格用 '.' 表示。
+//一个有效的数独（部分已被填充）不一定是可解的。
+//只需要根据以上规则，验证已经填入的数字是否有效即可。
+//'5', '3', '.',|'.', '7', '.',|'.', '.', '.'
+//'6', '.', '.',|'1', '9', '5',|'.', '.', '.'
+//'.', '9', '8',|'.', '.', '.',|'.', '6', '.'
+//--------------|--------------|-------------
+//'8', '.', '.',|'.', '6', '.',|'.', '.', '3'
+//'4', '.', '.',|'8', '.', '3',|'.', '.', '1'
+//'7', '.', '.',|'.', '2', '.',|'.', '.', '6'
+//--------------|--------------|-------------
+//'.', '6', '.',|'.', '.', '.',|'2', '8', '.'
+//'.', '.', '.',|'4', '1', '9',|'.', '.', '5'
+//'.', '.', '.',|'.', '8', '.',|'.', '7', '9'
+func IsValidSudoku(board [][]byte) bool {
+	s2 := make([]map[byte]int, 9)
+	s3 := make([]map[byte]int, 9)
+	s3i := 0
+	for i, bytes := range board {
+		s1 := make(map[byte]int, 0)
+		for i2, b := range bytes {
+			if i == 0 {
+				s2[i2] = make(map[byte]int, 0)
+			}
+
+			if (i2+1)%3 == 1 && (i+1)%3 == 1 {
+				s3[s3i] = make(map[byte]int, 0)
+				s3i++
+			}
+
+			if b == '.' {
+				continue
+			}
+			if _, ok := s1[b]; ok {
+				return false
+			} else {
+				s1[b] = 1
+			}
+
+			if _, ok := s2[i2][b]; ok {
+				return false
+			} else {
+				s2[i2][b] = 1
+			}
+			s3Index := getLatticeIndex(i2, i)
+			if _, ok := s3[s3Index][b]; ok {
+				return false
+			} else {
+				s3[s3Index][b] = 1
+			}
+		}
+	}
+
+	return true
+}
+func getLatticeIndex(x, y int) int {
+	positions := [][]int{{0, 2, 0, 2}, {3, 5, 0, 2}, {6, 8, 0, 2}, {0, 2, 3, 5}, {3, 5, 3, 5}, {6, 8, 3, 5}, {0, 2, 6, 8}, {3, 5, 6, 8}, {6, 8, 6, 8}}
+	for i, position := range positions {
+		if x >= position[0] && x <= position[1] && y >= position[2] && y <= position[3] {
+			return i
+		}
+	}
+	return -1
+}
