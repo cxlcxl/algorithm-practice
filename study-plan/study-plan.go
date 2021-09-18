@@ -331,3 +331,88 @@ func IsAnagram(s string, t string) bool {
 
 	return true
 }
+
+// CanWinNim 你和你的朋友，两个人一起玩 Nim 游戏：
+//桌子上有一堆石头。
+//你们轮流进行自己的回合，你作为先手。
+//每一回合，轮到的人拿掉 1 - 3 块石头。
+//拿掉最后一块石头的人就是获胜者。
+//假设你们每一步都是最优解。请编写一个函数，来判断你是否可以在给定石头数量为 n 的情况下赢得游戏。如果可以赢，返回 true；否则，返回 false 。
+//输入：n = 4
+//输出：false
+//解释：如果堆中有 4 块石头，那么你永远不会赢得比赛；
+//因为无论你拿走 1 块、2 块 还是 3 块石头，最后一块石头总是会被你的朋友拿走。
+//输入：n = 1
+//输出：true
+//输入：n = 2
+//输出：true
+func CanWinNim(n int) bool {
+	return n%4 != 0
+}
+
+// IntToRoman 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。
+//通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。
+//同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：
+//I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+//X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
+//C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+//给你一个整数，将其转为罗马数字。
+//输入: num = 3
+//输出: "III"
+//输入: num = 4
+//输出: "IV"
+//输入: num = 9
+//输出: "IX"
+//输入: num = 58
+//输出: "LVIII"
+//解释: L = 50, V = 5, III = 3.
+//输入: num = 1994
+//输出: "MCMXCIV"
+//解释: M = 1000, CM = 900, XC = 90, IV = 4.
+func IntToRoman(num int) string {
+	romanMap := map[int]byte{
+		1:    'I',
+		5:    'V',
+		10:   'X',
+		50:   'L',
+		100:  'C',
+		500:  'D',
+		1000: 'M',
+	}
+	roman := make([]byte, 0)
+	i := 1
+	for num > 0 {
+		tmp := num % 10
+		num /= 10
+		switch tmp {
+		case 1:
+			roman = append(roman, romanMap[i])
+		case 2:
+			roman = append(roman, romanMap[i], romanMap[i])
+		case 3:
+			roman = append(roman, romanMap[i], romanMap[i], romanMap[i])
+		case 4:
+			roman = append(roman, romanMap[i*5], romanMap[i])
+		case 5:
+			roman = append(roman, romanMap[i*5])
+		case 6:
+			roman = append(roman, romanMap[i], romanMap[i*5])
+		case 7:
+			roman = append(roman, romanMap[i], romanMap[i], romanMap[i*5])
+		case 8:
+			roman = append(roman, romanMap[i], romanMap[i], romanMap[i], romanMap[i*5])
+		case 9:
+			roman = append(roman, romanMap[i*10], romanMap[i])
+		default:
+		}
+
+		i *= 10
+	}
+	retBytes := make([]byte, len(roman))
+	j := 0
+	for k := len(roman) - 1; k >= 0; k-- {
+		retBytes[j] = roman[k]
+		j++
+	}
+	return string(retBytes)
+}
