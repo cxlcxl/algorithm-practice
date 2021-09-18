@@ -263,6 +263,71 @@ func CanConstruct(ransomNote string, magazine string) bool {
 //s = "loveleetcode"
 //返回 2
 func FirstUniqChar(s string) int {
-	idx := -1
-	return idx
+	sMap := make(map[byte]int, 0)
+	bytes := []byte(s)
+	for _, b := range bytes {
+		sMap[b]++
+	}
+	for i, b := range bytes {
+		if sMap[b] == 1 {
+			return i
+		}
+	}
+	return -1
+}
+
+// SetZeroes 给定一个 m x n 的矩阵，如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0 。请使用 原地 算法。
+//输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+//输出：[[1,0,1],[0,0,0],[1,0,1]]
+func SetZeroes(matrix [][]int) [][]int {
+	zeroX := make(map[int]int, 0)
+	zeroY := make(map[int]int, 0)
+	for i, ints := range matrix {
+		for i2, i3 := range ints {
+			if i3 == 0 {
+				zeroY[i2] = 0
+				zeroX[i] = 0
+			}
+		}
+	}
+	for i, ints := range matrix {
+		for i2, _ := range ints {
+			if _, ok := zeroX[i]; ok {
+				ints[i2] = 0
+			}
+			if _, ok := zeroY[i2]; ok {
+				ints[i2] = 0
+			}
+		}
+	}
+
+	return matrix
+}
+
+// IsAnagram 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+//注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
+//输入: s = "anagram", t = "nagaram"
+//输出: true
+//输入: s = "rat", t = "car"
+//输出: false
+func IsAnagram(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	sMap := make(map[byte]int, len(s))
+	tMap := make(map[byte]int, len(s))
+
+	bytes := []byte(s)
+	bytet := []byte(t)
+	for i := 0; i < len(bytes); i++ {
+		sMap[bytes[i]] += 1
+		tMap[bytet[i]] += 1
+	}
+	for _, b := range bytes {
+		if v, ok := tMap[b]; !ok || v != sMap[b] {
+			return false
+		}
+	}
+
+	return true
 }
