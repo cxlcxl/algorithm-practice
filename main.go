@@ -1,7 +1,7 @@
 package main
 
 import (
-	study_plan "algorithm-practice/study-plan"
+	"algorithm-practice/examples"
 	"fmt"
 )
 
@@ -17,6 +17,7 @@ func main() {
 	//fmt.Println(examples.IsValidSudoku(params))
 
 	// 算法数据结构入门 - 两周计划
-	fmt.Println(study_plan.IntToRoman(9999))
+	//fmt.Println(study_plan.IntToRoman(9999))
 
+	fmt.Println(examples.IsPowerOfThree(45))
 }
