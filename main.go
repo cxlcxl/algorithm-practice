@@ -18,6 +18,6 @@ func main() {
 
 	// 算法数据结构入门 - 两周计划
 	//fmt.Println(study_plan.IntToRoman(9999))
-
-	fmt.Println(examples.IsPowerOfThree(45))
+	test := [][]int{{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}}
+	fmt.Println(examples.FindNumberIn2DArray(test, 3))
 }
