@@ -1,9 +1,6 @@
 package main
 
-import (
-	"algorithm-practice/examples"
-	"fmt"
-)
+import "algorithm-practice/examples"
 
 func main() {
 	//fmt.Println(examples.ArrayUnique([]int{0, 0, 0, 1, 1, 2, 3, 3}))
@@ -17,7 +14,10 @@ func main() {
 	//fmt.Println(examples.IsValidSudoku(params))
 
 	// 算法数据结构入门 - 两周计划
-	//fmt.Println(study_plan.IntToRoman(9999))
-	test := [][]int{{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}}
-	fmt.Println(examples.FindNumberIn2DArray(test, 3))
+	//l1 := study_plan.ListNode{Val: 2, Next: &study_plan.ListNode{Val: 4, Next: &study_plan.ListNode{Val: 3, Next: &study_plan.ListNode{Val: 4, Next: nil}}}}
+	//l2 := study_plan.ListNode{Val: 5, Next: &study_plan.ListNode{Val: 6, Next: &study_plan.ListNode{Val: 4, Next: &study_plan.ListNode{Val: 6, Next: nil}}}}
+	//fmt.Println(study_plan.AddTwoNumbers(&l1, &l2))
+	//test := [][]int{{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}}
+	//fmt.Println(examples.FindNumberIn2DArray(test, 3))
+	examples.FindComplement(10)
 }
