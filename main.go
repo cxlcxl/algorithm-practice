@@ -1,23 +1,78 @@
 package main
 
-import "algorithm-practice/examples"
-
 func main() {
-	//fmt.Println(examples.ArrayUnique([]int{0, 0, 0, 1, 1, 2, 3, 3}))
-	//fmt.Println(examples.AddNums([]int{2, 4, 3}, []int{5, 6, 4}))
-	//fmt.Println(examples.LongestCommonPrefix([]string{"flower", "flow", "fight", ""}))
-	//fmt.Println(examples.FindLongestWord("abpcplea", []string{"ale", "apple", "monkey", "plea"}))
+	//c := colly.NewCollector(
+	//	colly.Debugger(&debug.LogDebugger{}),
+	//	//colly.MaxDepth(1),
+	//)
+	//c.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4503.5 Safari/537.36"
+	//// 所有a标签，上设置回调函数
+	//c.OnRequest(func(r *colly.Request) {
+	//	r.Headers.Set("Accept-Encoding", "gzip, deflate, br")
+	//	r.Headers.Set("Accept-Language", "zh-CN,zh;q=0.9")
+	//	r.Headers.Set("Accept", "application/json, text/plain, */*")
+	//	r.Headers.Set("Connection", "keep-alive")
+	//	r.Headers.Set("Content-Type", "application/json")
+	//	//r.Headers.Set("Referer", "https://ads.huawei.com/")
+	//	r.Headers.Set("Host", "svc-dra.ads.huawei.com")
+	//	r.Headers.Set("frontEndLang", "zh_CN")
+	//	r.Headers.Set("Sec-Fetch-Mode", "cors")
+	//	r.Headers.Set("Sec-Fetch-Site", "same-site")
+	//	r.Headers.Set("Sec-Fetch-Dest", "empty")
+	//	r.Headers.Set("sec-ch-ua-mobile", "?0")
+	//	r.Headers.Set("sec-ch-ua", "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"")
+	//	r.Headers.Set("Cookie", "corpId=494043463919075840; userId=494043463919075840; ppsdspportal=B84979AFA8838BF7C21C8E976165DACB36A4ED34521B4EE9; channel_name=google; channel_category=search; _ga=GA1.2.919820308.1630980754; _gcl_au=1.1.1789065317.1630980754; _dmpa_id=394230bad4173badd4dc6103823391631072837181.1631072768.1.1631072768.1631072768; _dmpa_ref=[\"\",\"\",1631072837,\"https://consumer.huawei.com/cn/phones/p50-pro/specs/\"]; _fbp=fb.1.1631072903905.1807093554; Hm_lvt_48e5a2ca327922f1ee2bb5ea69bdd0a6=1630981020,1631072570,1631072644,1632797317; utag_main=v_id:017bbe0748350019cc5600a5621703071001a06900bd0$_sn:2$_se:4$_ss:0$_st:1632799123582$dc_visit:2$ses_id:1632797316749;exp-session$_pn:1;exp-session$dc_event:3;exp-session$dc_region:ap-northeast-1;exp-session; Hm_lpvt_48e5a2ca327922f1ee2bb5ea69bdd0a6=1632797380; language=en_US; HuaweiID_CAS_ISCASLOGIN=true; CASLOGINSITE=1; LOGINACCSITE=5; dsp_ab_flag=new; authInfo=\"{\\\"expiretime\\\":\\\"20211109T064953Z\\\",\\\"rtCiphertext\\\":\\\"rcH6zCa3bLiYzQs6AEIqNI89QDqDtSyCT3ZA6+KTgR9qpVnBFCo42fS51UuRywOAngU9GGpa6NRQkAeQEVOkZDXrDb8tOCFpJQFWawvTaAM44/kPXu5ZivoZjqtPRkAbGXbrWrmk63xiMv3MbNJKdQUuOqSzr8xIpz6sqER9oto6QaxaVNCJdurAcGQ5TuRA\\\",\\\"createtime\\\":\\\"20211109T054953Z\\\",\\\"signature\\\":\\\"d0f9655581245aa78a7588ba21ec9667f87324b63bb6eb263d192c3816b92991\\\",\\\"accesstoken\\\":\\\"CwEAAAAAdcJzCtPWyXiIUpXwRLUrZJeQ7Ef8nR6FxwomLN4fyqiXifWr0v/qa6WH0M2DM1CtzAxutgTtVgOWa5SHbYB/Tjhuc2vk+jRaRwYlu40gKJS6jxY=\\\",\\\"siteID\\\":\\\"5\\\"}\"; csrfToken=93B61682444F3E27C1FC770206A4F3F36D1F03F20B21D5DC1C; USERMGT_SID=e8a440a5334328ee9099fd0b8196a6f132c728b2c245d8e42e8b3ce1b397e4988a81926871642b812c83517a9e33b6808f0d200efdf75c7aec7a9cc59133f757; dsp_siteId=3")
+	//})
+	//c.OnResponse(func(response *colly.Response) {
+	//	fmt.Println("response：", string(response.Body))
+	//})
+	//c.OnError(func(resp *colly.Response, errHttp error) {
+	//	fmt.Println(errHttp)
+	//})
+	////params := map[string]interface{}{
+	////	"flowResource":           1,
+	////	"isQueryDeletedAudience": false,
+	////	"promotionType":          2,
+	////	"targetingList":          []string{"languageList", "dmpGeo", "currentDmpGeo", "levelGeo", "currentLevelGeo", "dmpGender", "dmpAge", "appCategory", "appInterest", "modelType", "devicePrice", "networkType", "installedApps", "notInstalledApps", "preAudience", "notPreAudience", "mac", "activeDays", "pushModelType", "locationCategory"},
+	////}
+	////bytes, _ := json.Marshal(params)
+	//err := c.PostRaw("https://svc-dra.ads.huawei.com/ppsdspportal/v1/csrftoken/query", nil)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//fmt.Println(string(bytes))
+	//err = c.Visit("https://svc-dra.ads.huawei.com/ppsdspportal/v1/promotion_type/query")
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
 
-	//profits := []int{186, 0, 236, 8, 392, 91, 101, 64, 182, 370, 22, 80, 54, 424, 412, 88, 429, 374, 318, 477, 458, 281, 504, 43, 448, 385, 313, 395, 158, 363, 480, 314, 6, 395, 152, 394, 420, 57, 142, 179, 385, 298, 346, 172, 487, 427, 272, 60, 310, 394, 359, 42, 419, 342, 140, 502, 261, 281, 424, 433, 18, 473, 288, 50, 127, 87, 67, 369, 407, 101, 58, 455, 337, 79, 491, 451, 362, 72, 313, 85, 480, 229, 109, 310, 394, 419, 182, 54, 189, 261, 91, 300, 148, 444, 228, 215, 257, 47, 446, 340}
-	//capital := []int{75, 486, 155, 104, 72, 136, 174, 194, 368, 121, 258, 445, 160, 383, 73, 18, 437, 308, 509, 482, 227, 469, 104, 416, 257, 97, 88, 82, 181, 169, 463, 56, 182, 249, 467, 140, 328, 291, 115, 339, 511, 73, 53, 373, 220, 261, 236, 296, 284, 431, 178, 94, 520, 196, 150, 172, 26, 487, 96, 285, 433, 404, 204, 130, 313, 374, 89, 140, 401, 261, 76, 370, 126, 230, 73, 509, 377, 446, 480, 504, 61, 82, 504, 85, 241, 17, 84, 412, 18, 174, 469, 10, 449, 114, 215, 340, 414, 82, 401, 61}
-	//params := [][]byte{{'5', '3', '.', '.', '7', '.', '.', '.', '.'}, {'6', '3', '.', '1', '9', '5', '.', '.', '.'}, {'.', '9', '8', '.', '.', '.', '.', '6', '.'}, {'8', '.', '.', '.', '6', '.', '.', '.', '3'}, {'4', '.', '.', '8', '.', '3', '.', '.', '1'}, {'7', '.', '.', '.', '2', '.', '.', '.', '6'}, {'.', '6', '.', '.', '.', '.', '2', '8', '.'}, {'.', '.', '.', '4', '1', '9', '.', '.', '5'}, {'.', '.', '.', '.', '8', '.', '.', '7', '9'}}
-	//fmt.Println(examples.IsValidSudoku(params))
-
-	// 算法数据结构入门 - 两周计划
-	//l1 := study_plan.ListNode{Val: 2, Next: &study_plan.ListNode{Val: 4, Next: &study_plan.ListNode{Val: 3, Next: &study_plan.ListNode{Val: 4, Next: nil}}}}
-	//l2 := study_plan.ListNode{Val: 5, Next: &study_plan.ListNode{Val: 6, Next: &study_plan.ListNode{Val: 4, Next: &study_plan.ListNode{Val: 6, Next: nil}}}}
-	//fmt.Println(study_plan.AddTwoNumbers(&l1, &l2))
-	//test := [][]int{{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}}
-	//fmt.Println(examples.FindNumberIn2DArray(test, 3))
-	examples.FindComplement(10)
+	// http post 请求
+	//params := map[string]interface{}{
+	//	"flowResource":           1,
+	//	"isQueryDeletedAudience": false,
+	//	"promotionType":          2,
+	//	"targetingList":          []string{"languageList", "dmpGeo", "currentDmpGeo", "levelGeo", "currentLevelGeo", "dmpGender", "dmpAge", "appCategory", "appInterest", "modelType", "devicePrice", "networkType", "installedApps", "notInstalledApps", "preAudience", "notPreAudience", "mac", "activeDays", "pushModelType", "locationCategory"},
+	//}
+	//paramsBytes, err := json.Marshal(params)
+	//if err != nil {
+	//	log.Println(err)
+	//	return
+	//}
+	//fmt.Println(string(paramsBytes))
+	//req, err := http.NewRequest("POST", "https://svc-dra.ads.huawei.com/ppsdspportal/v1/targeting/query?showLoading=false", bytes.NewReader(paramsBytes))
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//req.Header.Set("Content-Type", "application/json;charset=UTF-8")
+	//curl := http.Client{}
+	//res, err := curl.Do(req)
+	//if err != nil {
+	//	log.Println(err)
+	//	return
+	//}
+	//body, _ := ioutil.ReadAll(res.Body)
+	//fmt.Println(body, res.Body)
 }
