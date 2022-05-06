@@ -1,6 +1,7 @@
 package examples
 
 import (
+	"math"
 	"strings"
 )
 
@@ -121,4 +122,46 @@ func FindLongestWord(s string, dictionary []string) string {
 //输出：[""]
 func removeInvalidParentheses(s string) []string {
 	return []string{}
+}
+
+func myAtoi(s string) int {
+	sMap := map[byte]int{'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+	s = strings.TrimSpace(s)
+
+	sBytes := []byte(s)
+	rs, k, mark := 0, 0, 1
+	if sBytes[0] == '-' {
+		sBytes = sBytes[1:]
+		mark = -1
+	} else if sBytes[0] == '+' {
+		sBytes = sBytes[1:]
+	}
+	sBytes = []byte(strings.TrimLeft(string(sBytes), "0"))
+	for i := 0; i < len(sBytes); i++ {
+		if _, ok := sMap[sBytes[i]]; !ok {
+			sBytes = sBytes[0:i]
+			break
+		}
+	}
+	if len(sBytes) > 11 {
+		if mark == -1 {
+			return math.MinInt32
+		} else {
+			return math.MaxInt32
+		}
+	}
+
+	for i := len(sBytes) - 1; i >= 0; i-- {
+		rs += int(math.Pow10(k)) * sMap[sBytes[i]]
+		k++
+	}
+
+	n := rs * mark
+	if n > math.MaxInt32 {
+		return math.MaxInt32
+	} else if n < math.MinInt32 {
+		return math.MinInt32
+	} else {
+		return rs * mark
+	}
 }
